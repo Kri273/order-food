@@ -4,6 +4,7 @@ const CartContext = createContext({
     items: [],
     totalItems: 0,
     addItem: () => {},
+    clearCart: () => {},
 });
 
 const cartReducer = (state, action) => {
@@ -29,6 +30,13 @@ const cartReducer = (state, action) => {
         };
     }
 
+    if (action.type === "CLEAR_CART") {
+        return {
+            items: [],
+            totalItems: 0,
+        };
+    }
+
     return state;
 };
 
@@ -42,12 +50,17 @@ export const CartProvider = ({ children }) => {
         dispatchCartAction({ type: "ADD_ITEM", item });
     };
 
+    const clearCartHandler = () => {
+        dispatchCartAction({ type: "CLEAR_CART" });
+    };
+
     return (
         <CartContext.Provider
             value={{
                 items: cartState.items,
                 totalItems: cartState.totalItems,
                 addItem: addItemHandler,
+                clearCart: clearCartHandler,
             }}
         >
             {children}
