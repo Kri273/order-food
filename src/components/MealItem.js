@@ -1,12 +1,13 @@
-const MealItem = (props) => {
+
+const MealItem = ({ meal }) => {
     return (
-        <li>
+        <li className="meal-item">
             <article>
-                <img src={require(`../assets/${props.meal.image}`)} alt={props.meal.name}/>
+                <img src={require(`../assets/${meal.image}`)} alt={meal.name}/>
                 <div>
-                    <h3>{props.meal.name}</h3>
-                    <p>props.meal.price</p>
-                    <p>{props.meal.description}</p>
+                    <h3>{meal.name}</h3>
+                    <p className="meal-item-price">{meal.price}</p>
+                    <p className="meal-item-description">{meal.description}</p>
                 </div>
                 <p>
                     <button >Add to Cart</button>
